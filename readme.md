@@ -24,3 +24,9 @@ Roboto Font: by [Christian Robertson](https://plus.google.com/110879635926653430
 Raleway Font: by Matt McInerney, Pablo Impallari, Rodrigo Fuenzalida and by Igino Marini ([Raleway at Google Fonts](https://www.google.com/fonts/specimen/Raleway))
 For additional information about the licenses, please see the dependency repositories.
 
+# Error while excuting this pipeline.
+![image](https://github.com/user-attachments/assets/ae8862a6-5d57-4463-a501-12c45b707b50)
+we have started the docker then below error is resolve and new error is appear.
+![image](https://github.com/user-attachments/assets/c7dedb6a-795e-4a4a-bb5b-f0693234e8b1)
+
+
