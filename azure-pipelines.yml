@@ -3,12 +3,14 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+# we are directly trigger on main branch
 trigger:
-- master
+- main
 
-pool:
-  vmImage: ubuntu-latest
+# this is self hosted agent
+pool: azure-agent
 
+#steps of ci pipeline
 steps:
 - task: replacetokens@4
   displayName: 'Replace tokens in appsettings.json'
@@ -35,12 +37,13 @@ steps:
     tokenPrefix: '__'
     tokenSuffix: '__'
 
+# Here we are getting the error
 - task: DockerCompose@0
   displayName: 'Run services'
   inputs:
     containerregistrytype: 'Azure Container Registry'
-    azureSubscription: '<<service connection details>>'
-    azureContainerRegistry: '{"loginServer":"registryName.azurecr.io", "id" : "/subscriptions/xxxx/resourceGroups/day11-demo-rg/providers/Microsoft.ContainerRegistry/registries/registryName"}'
+    azureSubscription: 'MSDN Platforms Subscription(603ce8c4-f03b-49f3-a19f-05931778fc93)'
+    azureContainerRegistry: '{"loginServer":"azureacr2025kk.azurecr.io", "id" : "/subscriptions/603ce8c4-f03b-49f3-a19f-05931778fc93/resourceGroups/aks-rg/providers/Microsoft.ContainerRegistry/registries/azureacr2025kk"}'
     dockerComposeFile: 'docker-compose.ci.build.yml'
     action: 'Run services'
     detached: false
@@ -49,8 +52,8 @@ steps:
   displayName: 'Build services'
   inputs:
     containerregistrytype: 'Azure Container Registry'
-    azureSubscription: '<<service connection details>>'
-    azureContainerRegistry: '{"loginServer":"registryName.azurecr.io", "id" : "/subscriptions/xxxx/resourceGroups/day11-demo-rg/providers/Microsoft.ContainerRegistry/registries/registryName"}'
+    azureSubscription: 'MSDN Platforms Subscription(603ce8c4-f03b-49f3-a19f-05931778fc93)'
+    azureContainerRegistry: '{"loginServer":"azureacr2025kk.azurecr.io", "id" : "/subscriptions/603ce8c4-f03b-49f3-a19f-05931778fc93/resourceGroups/aks-rg/providers/Microsoft.ContainerRegistry/registries/azureacr2025kk"}'
     dockerComposeFile: 'docker-compose.yml'
     dockerComposeFileArgs: 'DOCKER_BUILD_SOURCE='
     action: 'Build services'
@@ -60,8 +63,8 @@ steps:
   displayName: 'Push services'
   inputs:
     containerregistrytype: 'Azure Container Registry'
-    azureSubscription: '<<service connection details>>'
-    azureContainerRegistry: '{"loginServer":"registryName.azurecr.io", "id" : "/subscriptions/xxxx/resourceGroups/day11-demo-rg/providers/Microsoft.ContainerRegistry/registries/registryName"}'
+    azureSubscription: 'MSDN Platforms Subscription(603ce8c4-f03b-49f3-a19f-05931778fc93)'
+    azureContainerRegistry: '{"loginServer":"azureacr2025kk.azurecr.io", "id" : "/subscriptions/603ce8c4-f03b-49f3-a19f-05931778fc93/resourceGroups/aks-rg/providers/Microsoft.ContainerRegistry/registries/azureacr2025kk"}'
     dockerComposeFile: 'docker-compose.yml'
     dockerComposeFileArgs: 'DOCKER_BUILD_SOURCE='
     action: 'Push services'
@@ -71,8 +74,8 @@ steps:
   displayName: 'Lock services'
   inputs:
     containerregistrytype: 'Azure Container Registry'
-    azureSubscription: '<<service connection details>>'
-    azureContainerRegistry: '{"loginServer":"registryName.azurecr.io", "id" : "/subscriptions/xxxx/resourceGroups/day11-demo-rg/providers/Microsoft.ContainerRegistry/registries/registryName"}'
+    azureSubscription: 'MSDN Platforms Subscription(603ce8c4-f03b-49f3-a19f-05931778fc93)'
+    azureContainerRegistry: '{"loginServer":"azureacr2025kk.azurecr.io", "id" : "/subscriptions/603ce8c4-f03b-49f3-a19f-05931778fc93/resourceGroups/aks-rg/providers/Microsoft.ContainerRegistry/registries/azureacr2025kk"}'
     dockerComposeFile: 'docker-compose.yml'
     dockerComposeFileArgs: 'DOCKER_BUILD_SOURCE='
     action: 'Lock services'
