@@ -1,3 +1,12 @@
+# Step we have followed while executing the azure pipeline.
+create the resources- AKS, ACR, DB
+import the source code from local to azure repos.
+start the confguration first we have to replace the token. write the yaml file as per the requirement.
+once the CI part is completed.
+then will move for the CD part (release part)
+setup the agent called the AKS resource and do the configuration to run our CD piepline.
+with the help of LB expose the application outside the world.
+
 # My Health Clinic - A Demo app for Azure DevOps Zero to Hero
 
 ## Overview
